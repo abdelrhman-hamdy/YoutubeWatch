@@ -29,6 +29,12 @@ module "AppConfig" {
   
 }
 
+module "SNS" {
+  source = "../modules/SNS"
+  protocol = "email"
+  endpoint  = "abdelrhman.hamdy1969@gmail.com"
+  
+}
 
 #module "s3" {
 #  source = "../modules/S3bucket"
