@@ -1,0 +1,23 @@
+
+CloudWatch--> Lambda--> YoutupeAPI
+                    --> Mysql
+                    --> SNS --> Send notification via email or phone
+
+1-Mysql RDS with table that has ChannelID,channelName, lastuploadedvedioID,lastuploadedvedioName, Link
+
+2-AppConfig with a list of ChannelsID
+
+3-Create sns topic and subscribe with my phone number
+4-Develop the python code, see hot to use YoutupeAPI ,TEST THE CODE , then --> create lambda , assign all roles, know how to use boto3
+
+5-cloudwatch  and trigger
+
+6-TEST the whole process
+
+
+
+
+
+
+
+Provisioners are used to execute scripts on a local or remote machine as part of resource creation or destruction. Provisioners can be used to bootstrap a resource, cleanup before destroy, run configuration management, etc.
