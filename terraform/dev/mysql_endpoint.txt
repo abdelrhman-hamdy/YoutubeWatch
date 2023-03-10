@@ -1,1 +1,0 @@
-mysql-database.cldk7hoyvzuf.us-east-1.rds.amazonaws.com:3306

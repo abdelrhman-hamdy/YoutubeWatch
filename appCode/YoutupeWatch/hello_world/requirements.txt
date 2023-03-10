@@ -3,3 +3,5 @@ pandas
 ipython
 isodate
 google-api-python-client 
+boto3
+boto3[crt]

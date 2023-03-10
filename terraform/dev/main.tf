@@ -36,6 +36,17 @@ module "SNS" {
   
 }
 
+module "PatameterStore" {
+  source = "../modules/ParameterStore"
+  api_key= var.YoutupeApi
+  db_host=module.Mysql.mysql-database.address
+  db_user=var.db_username
+  db_pass=var.db_password
+  depends_on = [
+    module.Mysql
+  ]
+}
+
 #module "s3" {
 #  source = "../modules/S3bucket"
 #  buckbucketname =  "youtube-wtach-bucket"
@@ -46,5 +57,5 @@ module "SNS" {
 
 
 output "Mysql_endpoint" {
-  value = module.Mysql.mysql-database.endpoint
+  value = module.Mysql.mysql-database.address
 }
