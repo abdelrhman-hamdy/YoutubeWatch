@@ -3,12 +3,15 @@ from googleapiclient.discovery import build
 from IPython.display import JSON
 import isodate
 
-api_key="" 
-api_service_name = "youtube"
-api_version = "v3"
-channelIDs=["UCoOae5nYA7VqaXzerajD0lg","UCboi9tFaUpreNfGMBoZ339A","UCJQJAI7IjbLcpsjWdSzYz0Q","UCJ24N4O0bP7LGLBDvye7oCA","UCWpr8yIhv8wOvdR27W2Mybw"]
+#api_key=""
+#api_service_name = "youtube"
+#api_version = "v3"
+#channelIDs=["UCoOae5nYA7VqaXzerajD0lg","UCboi9tFaUpreNfGMBoZ339A","UCJQJAI7IjbLcpsjWdSzYz0Q","UCJ24N4O0bP7LGLBDvye7oCA","UCWpr8yIhv8wOvdR27W2Mybw"]
+
+
 # Get credentials and create an API client
-youtube = build(api_service_name, api_version, developerKey=api_key)
+#youtube = build(api_service_name, api_version, developerKey=api_key)
+
 
 def get_playlist_ids(youtube, channel_ids):
     request = youtube.channels().list(part="snippet,contentDetails,statistics", id=",".join(channel_ids))
@@ -18,6 +21,8 @@ def get_playlist_ids(youtube, channel_ids):
         PlayListIDs.append(item['contentDetails']['relatedPlaylists']['uploads'])
     return PlayListIDs
     
+
+
 
 def get_last_uploaded_vedios(youtube,playlist_ids):
     lists_of_latest_vedios=[]
@@ -46,10 +51,5 @@ def get_last_uploaded_vedios(youtube,playlist_ids):
             
     return lists_of_latest_vedios
 
-
-
-playlistids=get_playlist_ids(youtube, channelIDs) 
-
-print(get_last_uploaded_vedios(youtube,playlistids))     
 
 

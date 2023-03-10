@@ -1,0 +1,5 @@
+requests
+pandas
+ipython
+isodate
+google-api-python-client 
