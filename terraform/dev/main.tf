@@ -2,7 +2,7 @@ terraform {
     required_providers {
       aws = {
 	      source = "hashicorp/aws"
-	      version = "~> 3.27"
+	      version = "~> 4.5"
       }
     }
   required_version = ">= 0.14.9"
@@ -25,8 +25,7 @@ module "AppConfig" {
   AppName= "YoutupeWatch"
   env= "test"
   profile="ChannelIDs"
-  content=["UC9T54M7XBSfc16rsgjAeOBg","UCoOae5nYA7VqaXzerajD0lg" ,"UCck1m7zZdzioiUzqhzpdNPw"]
-  
+  content=["UC9T54M7XBSfc16rsgjAeOBg","UCEHvaZ336u7TIsUQ2c6SAeQ","UCoOae5nYA7VqaXzerajD0lg" ,"UCck1m7zZdzioiUzqhzpdNPw","UCpui0-2JqcAcII4ybpB1q3w"]
 }
 
 module "SNS" {

@@ -8,14 +8,22 @@ import json
 import boto3
 import mysql.connector    
 
+
+# Create boto3 Clients
 ssm = boto3.client('ssm')
 appconfig = boto3.client('appconfigdata')
 sns = boto3.client('sns')
 
+
+# Functions to handle interacting with AWS services using boto3 
+
+#  Get parameter value from "System manager Store parameter" using parameter name
 def get_ssm_parameter(parameter_name):
     response = ssm.get_parameter(Name=parameter_name,WithDecryption=True)
     return response['Parameter']['Value']
 
+
+# Get latest application configuration from Appconfig
 def get_latest_app_configuration(app_name,env,profile,poll_int):
     
     appconfig_response = appconfig.start_configuration_session(
@@ -38,11 +46,12 @@ def push_msg_to_topic(topic_name,subject,msg_body ):
 
 
 # Load parameters from AWS parameter store
-api_key= get_ssm_parameter('YoutupeApiKey')
+
+
 db_host= get_ssm_parameter('mysql_endpoint')
 db_user= get_ssm_parameter('mysql_username')
 db_pass= get_ssm_parameter('mysql_password')
-
+api_key= get_ssm_parameter('YoutupeApiKey')
 
 # Get app configuration from AWS AppConfig
 channelIDs= get_latest_app_configuration('YoutupeWatch','test','ChannelIDs',123)
@@ -76,7 +85,7 @@ for channel in all_latest_videos :
 
         msg_body= f'Your Favourite Youtuper {channel["channelTitle"]} Has uploaded a new video titled: "{channel["vedioTitle"]}". To watch it please visit this link {channel["link"]}'
         
-        msg_id=push_msg_to_topic('user-updates-YoutupeWatch-topic',f'New video of {channel["channelTitle"]}',msg_body)
+        msg_id=push_msg_to_topic('YoutupeWatch',f'New video of {channel["channelTitle"]}',msg_body)
         num_of_msg.append(msg_id)
 
 print( f'a total of {len(num_of_msg)} Emails have been sent ')
