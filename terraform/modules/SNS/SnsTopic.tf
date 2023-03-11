@@ -1,6 +1,6 @@
 resource "aws_sns_topic" "topic" {
-  name = "user-updates-YoutupeWatch-topic"
-  display_name = "user-updates-YoutupeWatch-topic"
+  name = "YoutupeWatch"
+  display_name = "YoutupeWatch"
   delivery_policy = <<EOF
 {
   "http": {

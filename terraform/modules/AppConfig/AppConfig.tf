@@ -49,6 +49,31 @@ resource "aws_appconfig_hosted_configuration_version" "content" {
   })
 }
 
+resource "aws_appconfig_hosted_configuration_version" "content2" {
+  application_id           = aws_appconfig_application.application.id
+  configuration_profile_id = aws_appconfig_configuration_profile.profile.configuration_profile_id
+  description              = "Freeform Hosted Configuration Version"
+  content_type             = "application/json"
+
+  content = jsonencode({
+    "channelIDs" = ["UC9T54M7XBSfc16rsgjAeOBg","UCEHvaZ336u7TIsUQ2c6SAeQ","UCoOae5nYA7VqaXzerajD0lg" ,"UCck1m7zZdzioiUzqhzpdNPw","UCpui0-2JqcAcII4ybpB1q3w"]
+
+  })
+}
+
+resource "aws_appconfig_hosted_configuration_version" "content3" {
+  application_id           = aws_appconfig_application.application.id
+  configuration_profile_id = aws_appconfig_configuration_profile.profile.configuration_profile_id
+  description              = "Freeform Hosted Configuration Version"
+  content_type             = "application/json"
+
+  content = jsonencode({
+    "channelIDs" = ["UC9T54M7XBSfc16rsgjAeOBg","UCEHvaZ336u7TIsUQ2c6SAeQ","UCoOae5nYA7VqaXzerajD0lg" ,"UCck1m7zZdzioiUzqhzpdNPw","UCpui0-2JqcAcII4ybpB1q3w"]
+
+  })
+}
+
+
 resource "aws_appconfig_deployment_strategy" "strategy" {
   name                           = "youtupewatch-deployment-strategy"
   deployment_duration_in_minutes = 0
@@ -62,11 +87,11 @@ resource "aws_appconfig_deployment_strategy" "strategy" {
 resource "aws_appconfig_deployment" "deployment" {
   application_id           = aws_appconfig_application.application.id
   configuration_profile_id = aws_appconfig_configuration_profile.profile.configuration_profile_id
-  configuration_version    = aws_appconfig_hosted_configuration_version.content.version_number
+  configuration_version    = aws_appconfig_hosted_configuration_version.content2.version_number
   deployment_strategy_id   = aws_appconfig_deployment_strategy.strategy.id
   environment_id           = aws_appconfig_environment.enviroment.environment_id 
   depends_on = [
-    aws_appconfig_application.application,aws_appconfig_deployment_strategy.strategy,aws_appconfig_configuration_profile.profile,aws_appconfig_environment.enviroment,aws_appconfig_hosted_configuration_version.content
+    aws_appconfig_application.application,aws_appconfig_deployment_strategy.strategy,aws_appconfig_configuration_profile.profile,aws_appconfig_environment.enviroment,aws_appconfig_hosted_configuration_version.content2
   ]
 }
 
