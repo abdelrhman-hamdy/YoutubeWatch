@@ -1,25 +1,26 @@
 <p align="center">
 
-  ![YoutupeWatch](https://hypemagazine.co.za/wp-content/uploads/2022/11/106796532-YouTube-Thumbnail-1-jpg.jpeg)
+  <img src="https://hypemagazine.co.za/wp-content/uploads/2022/11/106796532-YouTube-Thumbnail-1-jpg.jpeg" width="1000" height="500">
 
   </a>
 </p>
 
-<h3 align="center">YoutupeWatch</h3>
+<h3 align="center">YoutubeWatch</h3>
 
 ## Table of contents :
-- [Introuduction](#introuduction)
+- [Introuduction](#introduction-)
 - [Diagram](#diagram)
 - [Run the Application](#run-the-application)
 
 ## Introduction :
-YoutupeWatch is a serverless application created on AWS.it simply checks every hour a list of given favourite youtupe channels and see if a new video has been uploaded, if any , it publish a message to a SNS topic, which as a result sends emails for each new uploaded video to its subscribers
-
-![youtupewatchemail](https://user-images.githubusercontent.com/69608603/224563447-b091b2c1-7022-4c3b-afd6-37d908dfc196.png)
-![example](https://user-images.githubusercontent.com/69608603/224563433-3859eb94-4da2-41c2-ad2b-108805073770.png)
+YoutubeWatch is a serverless application created on AWS.it simply checks every hour a list of given favourite youtube channels and see if a new video has been uploaded, if any , it publish a message to a SNS topic, which as a result sends emails for each new uploaded video to its subscribers
+<p align="center">
+<img  src="https://user-images.githubusercontent.com/69608603/224564330-b8d91840-f17f-4da9-88fb-e41a149c95b9.png" alt="centered image" height="400">
+</p>
 
 ## Diagram
-<p align="center">
-![YoutupeWatch](https://user-images.githubusercontent.com/69608603/224563478-f6295b3f-5797-432c-83e8-0e42f1aa04dc.png)
-  </a>
-  </p>
+ 
+ ![YoutupeWatch](https://user-images.githubusercontent.com/69608603/224564562-e6b72d23-3208-4127-a832-7adda9f1b238.png)
+
+
+# Run The Application
