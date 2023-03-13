@@ -34,7 +34,7 @@ You will need to have the following to run the project successfully :
  - A username and password of your choice for the created databse.
  - Email address to receive notifications. DON'T forget to confirm the subscription that will be sent from SNS
  - List of your favourite youtube channel ids, to know how to get a channel id, check this [link](https://www.youtube.com/watch?v=0oDy2sWPF38)
-  -- Exmaple: ["UCGPGirOab9EGy7VH4IwmWVQ","UCoOae5nYA7VqaXzerajD0lg","UCJ24N4O0bP7LGLBDvye7oCA"]
+  - Exmaple: ["UCGPGirOab9EGy7VH4IwmWVQ","UCoOae5nYA7VqaXzerajD0lg","UCJ24N4O0bP7LGLBDvye7oCA"]
 
 ```bash
  git clone https://github.com/abdelrhman-hamdy/YoutupeWatch.git
