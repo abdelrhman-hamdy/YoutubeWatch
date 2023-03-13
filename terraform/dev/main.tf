@@ -69,6 +69,3 @@ module "lambda" {
 }
 
 
-output "Mysql_endpoint" {
-  value = module.Mysql.mysql-database.address
-}
