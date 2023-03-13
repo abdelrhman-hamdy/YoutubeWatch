@@ -24,13 +24,13 @@ module "AppConfig" {
   AppName= "YoutupeWatch"
   env= "test"
   profile="ChannelIDs"
-  content=["UC9T54M7XBSfc16rsgjAeOBg","UCEHvaZ336u7TIsUQ2c6SAeQ","UCoOae5nYA7VqaXzerajD0lg" ,"UCck1m7zZdzioiUzqhzpdNPw","UCpui0-2JqcAcII4ybpB1q3w"]
+  content=var.ChannelIDs
 }
 
 module "SNS" {
   source = "../modules/SNS"
   protocol = "email"
-  endpoint  = "abdelrhman.hamdy1969@gmail.com"
+  endpoint  = var.email_address
   
 }
 
@@ -67,5 +67,3 @@ module "cloudwatch" {
 module "lambda" {
   source = "../modules/Lambda"
 }
-
-
