@@ -1,9 +1,0 @@
-requests
-pandas
-ipython
-isodate
-google-api-python-client 
-boto3
-boto3[crt]
-mysql.connector
-mysql-connector-python

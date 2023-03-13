@@ -4,3 +4,5 @@ terraform/dev/*terraform*
 passwords.txt
 api_key
 YoutupeWatch/.aws-sam
+__pycache__
+.vscode

@@ -23,9 +23,6 @@ resource "aws_iam_policy" "lambda_acess_appconfig_policy" {
    )
   }
 
-
-
-
 resource "aws_iam_policy" "lambda_acess_publish_sns_topic" {
   name        = "lambda_acess_publish_sns_topic"
   policy = jsonencode(   
@@ -41,43 +38,6 @@ resource "aws_iam_policy" "lambda_acess_publish_sns_topic" {
 
    )
   }
-
-
-
-
-resource "aws_lambda_function" "YoutubeWatch-lambda" {
-  function_name = "YoutubeWatch"
-
-  s3_bucket = aws_s3_bucket.lambda_bucket.id
-  s3_key    = aws_s3_object.YoutubeWatch_object.key
-
-  runtime = "python3.9"
-  handler = "app.lambda_handler"
-  timeout= 50
-  role = aws_iam_role.lambda_exec.arn
-
-    depends_on = [
-      aws_s3_object.YoutubeWatch_object
-    ]
-}
-resource "random_pet" "lambda_bucket_name" {
-  prefix = "lambda"
-  length = 2
-}
-
-resource "aws_s3_bucket" "lambda_bucket" {
-  bucket        = random_pet.lambda_bucket_name.id
-  force_destroy = true
-}
-
-resource "aws_s3_bucket_public_access_block" "lambda_bucket" {
-  bucket = aws_s3_bucket.lambda_bucket.id
-
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
-}
 
 resource "aws_iam_role" "lambda_exec" {
   name = "YoutubeWatch-lambda"
@@ -120,7 +80,39 @@ resource "aws_iam_role_policy_attachment" "lambda_acess_publish_sns_topic" {
 }
 
 
+resource "aws_lambda_function" "YoutubeWatch-lambda" {
+  function_name = "YoutubeWatch"
 
+  s3_bucket = aws_s3_bucket.lambda_bucket.id
+  s3_key    = aws_s3_object.YoutubeWatch_object.key
+
+  runtime = "python3.9"
+  handler = "app.lambda_handler"
+  timeout= 50
+  role = aws_iam_role.lambda_exec.arn
+
+    depends_on = [
+      aws_s3_object.YoutubeWatch_object
+    ]
+}
+resource "random_pet" "lambda_bucket_name" {
+  prefix = "lambda"
+  length = 2
+}
+
+resource "aws_s3_bucket" "lambda_bucket" {
+  bucket        = random_pet.lambda_bucket_name.id
+  force_destroy = true
+}
+
+resource "aws_s3_bucket_public_access_block" "lambda_bucket" {
+  bucket = aws_s3_bucket.lambda_bucket.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
 
 variable "lambda_src_path" {
   type        = string
@@ -161,8 +153,6 @@ data "archive_file" "lambda_source" {
   output_path = "${random_uuid.lambda_src_hash.result}.zip"
   type        = "zip"
 }
-
-
 
 resource "aws_s3_object" "YoutubeWatch_object" {
   bucket = aws_s3_bucket.lambda_bucket.id
