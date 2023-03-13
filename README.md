@@ -31,9 +31,9 @@ you will need to have the following to run the project successfully :
 # Run The Application
  you will need to provide some values when applying the terraform :
  - Youtupe API key .
- - a username and password that the mysql database will have.
- - email address to send notifications to .
- - list of your favourite youtube channel ids, to know how to a channel id, check this [link](https://www.youtube.com/watch?v=0oDy2sWPF38)
+ - A username and password that the mysql database will have.
+ - Email address to send notifications to .
+ - List of your favourite youtube channel ids, to know how to get channel id, check this [link](https://www.youtube.com/watch?v=0oDy2sWPF38)
 ```bash
 $ git clone https://github.com/abdelrhman-hamdy/YoutupeWatch.git
 $ cd YoutupeWatch/terraform/dev
