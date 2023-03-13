@@ -35,7 +35,7 @@ module "SNS" {
   
 }
 
-module "PatameterStore" {
+module "ParameterStore" {
   source = "../modules/ParameterStore"
   api_key= var.YoutupeApi
   db_host=module.Mysql.mysql-database.address
@@ -53,6 +53,21 @@ module "PatameterStore" {
  # src =  "ChannelsID.json" 
  # dest =  "ChannelsID.json"
 #}
+
+
+
+module "cloudwatch" {
+  source = "../modules/cloudwatch"
+  lambda_arn=module.lambda.YoutubeWatch-lambda.arn
+  lambda_name=module.lambda.YoutubeWatch-lambda.function_name
+  depends_on = [
+    module.lambda
+  ]
+}
+
+module "lambda" {
+  source = "../modules/Lambda"
+}
 
 
 output "Mysql_endpoint" {
