@@ -27,16 +27,22 @@ you will need to have the following to run the project successfully :
 - AWS account 
 - AWS CLI access 
 - Youtupe API key, to learn more how to get it check this [link](https://www.youtube.com/watch?v=D56_Cx36oGY&t=76s) from 1:16 to 4:45 
+- Installing Terraform, pip3
 
 # Run The Application
  you will need to provide some values when applying the terraform :
  - Youtupe API key .
  - A username and password that the mysql database will have.
- - Email address to send notifications to .
+ - Email address to send notifications to .DON'T forget to confirm the subscribtion that will be sent to the email from AWS SNS service when applying terraform
  - List of your favourite youtube channel ids, to know how to get channel id, check this [link](https://www.youtube.com/watch?v=0oDy2sWPF38)
+  Exmaple: ["UCGPGirOab9EGy7VH4IwmWVQ","UCoOae5nYA7VqaXzerajD0lg","UCJ24N4O0bP7LGLBDvye7oCA"]
 ```bash
-$ git clone https://github.com/abdelrhman-hamdy/YoutupeWatch.git
-$ cd YoutupeWatch/terraform/dev
-$ terraform init  
-$ terraform apply
+ git clone https://github.com/abdelrhman-hamdy/YoutupeWatch.git
+ cd YoutupeWatch/terraform/dev
+ terraform init  
+ export TF_VAR_YoutupeApi="YOUR-YOUTUBE-API-KEY"
+ export TF_VAR_db_username="YOUR-DB-USERNAME"
+ export TF_VAR_db_password="YOUR-DB-PASSWORD" 
+ export TF_VAR_email_address="YOUER-EMAIL" 
+ terraform apply
 ```
