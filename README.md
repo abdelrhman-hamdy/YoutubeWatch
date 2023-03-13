@@ -1,9 +1,3 @@
-<p align="center">
-
-  <img src="https://hypemagazine.co.za/wp-content/uploads/2022/11/106796532-YouTube-Thumbnail-1-jpg.jpeg" width="1000" height="500">
-
-  </a>
-</p>
 
 <h3 align="center">YoutubeWatch</h3>
 
