@@ -1,8 +1,7 @@
 variable "db_username" {
   type = string
 
-}~ْص
-
+}
 variable "db_password" {
   type = string
   sensitive = true
