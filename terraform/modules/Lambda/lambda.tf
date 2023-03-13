@@ -122,7 +122,7 @@ variable "lambda_src_path" {
 
 resource "null_resource" "install_dependencies" {
   provisioner "local-exec" {
-    command = "pip install -r ${var.lambda_src_path}/requirements.txt -t ${var.lambda_src_path}/"
+    command = "pip3 install -r ${var.lambda_src_path}/requirements.txt -t ${var.lambda_src_path}/"
   }
     triggers = {
     dependencies_versions = filemd5("${var.lambda_src_path}/requirements.txt")
@@ -131,6 +131,7 @@ resource "null_resource" "install_dependencies" {
 }
 
 resource "random_uuid" "lambda_src_hash" {
+  depends_on = [null_resource.install_dependencies]
   keepers = {
     for filename in setunion(
       fileset(var.lambda_src_path, "app.py"),
