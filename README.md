@@ -31,7 +31,7 @@ You will need to have the following to run the project successfully :
 # Run The Application
  you will need to provide some values when applying the terraform :
  - Youtupe API key, to get one, check this [link](https://www.youtube.com/watch?v=D56_Cx36oGY&t=76s) from 1:16 to 4:45 
- - A username and password of your choice for the created databse.
+ - A username and password of your choice for the created database.
  - Email address to receive notifications. DON'T forget to confirm the subscription that will be sent from SNS
  - List of your favourite youtube channel ids, to know how to get a channel id, check this [link](https://www.youtube.com/watch?v=0oDy2sWPF38)
 
