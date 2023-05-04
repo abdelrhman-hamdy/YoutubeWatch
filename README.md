@@ -9,7 +9,7 @@
 - [Run the Application](#run-the-application)
 
 ## Introduction 
-YoutubeWatch is a serverless application created on AWS. It simply checks every hour a list of given favourite youtube channels and see if a new video has been uploaded, if any , it publish a message to a SNS topic, which as a result sends emails for each new uploaded video to its subscribers
+YoutubeWatch is a serverless application created on AWS that periodically checks a list of favorite YouTube channels for new video uploads. If a new video is detected, it publishes a message to an SNS topic, which in turn sends emails to subscribers notifying them of the new video. Because it is a serverless application, it does not require the provisioning or management of servers, and instead leverages AWS services to handle the necessary infrastructure and scaling.
 <p align="center">
 <img  src="https://user-images.githubusercontent.com/69608603/224564330-b8d91840-f17f-4da9-88fb-e41a149c95b9.png" alt="centered image" height="400">
 </p>
@@ -39,10 +39,11 @@ You will need to have the following to run the project successfully :
  git clone https://github.com/abdelrhman-hamdy/YoutupeWatch.git
  cd YoutupeWatch/terraform/dev
  terraform init  
- export TF_VAR_YoutupeApi="YOUR-YOUTUBE-API-KEY"
- export TF_VAR_db_username="YOUR-DB-USERNAME"
- export TF_VAR_db_password="YOUR-DB-PASSWORD" 
- export TF_VAR_email_address="YOUER-EMAIL" 
- # Exp of passing channel ids: ChannelsID=["UCGPGirOab9EGy7VH4IwmWVQ","UCoOae5nYA7VqaXzerajD0lg","UCJ24N4O0bP7LGLBDvye7oCA"]
- terraform apply
 ```
+Modify YoutupeWatch/terraform/dev/vars.tfvars file with your values 
+
+```bash
+terraform apply 
+```
+A confirmation Email from SNS service will be sent to you. Then you will get notified Every hour If one of your favourites Youtupers Upload a new video
+
