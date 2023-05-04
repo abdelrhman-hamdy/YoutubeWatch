@@ -6,30 +6,33 @@ import mysql.connector
 from googleapiclient.discovery import build
 import isodate
 #Check boto3_handler to understand how these function works
-# loading parameters from AWS system manager store parameter
-db_host= get_ssm_parameter('mysql_endpoint')
-db_user= get_ssm_parameter('mysql_username')
-db_pass= get_ssm_parameter('mysql_password')
-api_key= get_ssm_parameter('YoutupeApiKey')
 
-# Get app configuration from AWS AppConfig
-channelIDs= get_latest_app_configuration('YoutupeWatch','test','ChannelIDs',123)
-
-#Connect to mysql 
-mydb = mysql.connector.connect(
-  host=db_host,
-  user=db_user,
-  password=db_pass
-)
-mysql_cursor = mydb.cursor()
-
-#select the database
-mysql_cursor.execute("use YoutubeWatch")
-
-#intiate youtupe object to use in calling data from the API
-youtube = build("youtube", "v3", developerKey=api_key)
 
 def lambda_handler(event, context):
+
+    # loading parameters from AWS system manager store parameter
+    db_host= get_ssm_parameter('mysql_endpoint')
+    db_user= get_ssm_parameter('mysql_username')
+    db_pass= get_ssm_parameter('mysql_password')
+    api_key= get_ssm_parameter('YoutupeApiKey')
+
+    # Get app configuration from AWS AppConfig
+    channelIDs= get_latest_app_configuration('YoutupeWatch','test','ChannelIDs',123)
+
+    #Connect to mysql
+    mydb = mysql.connector.connect(
+    host=db_host,
+    user=db_user,
+    password=db_pass
+    )
+    mysql_cursor = mydb.cursor()
+
+    #select the database
+    mysql_cursor.execute("use YoutubeWatch")
+
+    #intiate youtupe object to use in calling data from the API
+    youtube = build("youtube", "v3", developerKey=api_key)
+
 
     #get channels playlist 
     playlist_ids= get_playlist_ids(youtube, channelIDs)
