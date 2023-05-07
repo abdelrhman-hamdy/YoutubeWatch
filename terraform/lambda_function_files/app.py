@@ -5,8 +5,17 @@ import json
 import mysql.connector    
 from googleapiclient.discovery import build
 import isodate
+from youtube_transcript_api import YouTubeTranscriptApi
 #Check boto3_handler to understand how these function works
 
+# set the summerization API's HTTP request body and URL
+summarize_API_URL='https://api.edenai.run/v2/text/summarize'
+payload = {
+  "providers": "openai",
+  "output_sentences": 3,
+  "text": "",
+  "language": "en"
+}
 
 def lambda_handler(event, context):
 
@@ -15,6 +24,12 @@ def lambda_handler(event, context):
     db_user= get_ssm_parameter('mysql_username')
     db_pass= get_ssm_parameter('mysql_password')
     api_key= get_ssm_parameter('YoutupeApiKey')
+    summ_api_key= get_ssm_parameter('SummrizationApiKey')
+
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization":f'Bearer {summ_api_key}'
+        }
 
     # Get app configuration from AWS AppConfig
     channelIDs= get_latest_app_configuration('YoutupeWatch','test','ChannelIDs',123)
@@ -57,8 +72,15 @@ def lambda_handler(event, context):
             val=(channel["channelTitle"],channel["channelId"],channel["vedioTitle"],channel["vedioId"],channel["link"])
             mysql_cursor.execute(sql, val)
             mydb.commit()
-    
-            msg_body= f'Your Favourite Youtuper {channel["channelTitle"]} Has uploaded a new video titled: "{channel["vedioTitle"]}". To watch it please visit this link {channel["link"]}'
+
+            items=YouTubeTranscriptApi.get_transcript(channel["vedioId"])
+            for item in items:
+                transcript = transcript + item['text']
+            payload['text']=transcript
+            response = requests.post(summarize_API_URL, json=payload, headers=headers)
+            summary = response.json()['openai']['result']
+
+            msg_body= f"Your Favourite Youtuper {channel["channelTitle"]} Has uploaded a new video titled: "{channel["vedioTitle"]}".\n\nA Summary of the video's topic{text} \n\nTo watch it please visit this link {channel["link"]}"
             
             msg_id=push_msg_to_topic('YoutupeWatch',f'New video of {channel["channelTitle"]}',msg_body)
             num_of_sent_emails.append(msg_id)

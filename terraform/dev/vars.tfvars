@@ -1,5 +1,6 @@
-YoutupeApi   = "YOUR-YOUTUBE-API-KEY"
-db_username  = "YOUR-DB-USERNAME"
-db_password  = "YOUR-DB-PASSWORD"
-email_address= "YOUER-EMAIL"
-ChannelIDs   = ["CHANNEL-ID-1","CHANNEL-ID-2","CHANNEL-ID-X"]
+YoutupeApi   = "Your-Youtupe-Api-KEY"
+db_username  = "MySQL-UserName"
+db_password  = "MySQL-password"
+email_address= "YOUR-EMAIL-ADDRESS"
+ChannelIDs   = ["ChannelID1","ChannelID2","ChannelID3"]
+SummrizationApiKey = "Your-Summrization-Api-Key"

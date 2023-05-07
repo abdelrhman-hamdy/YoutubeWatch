@@ -37,6 +37,7 @@ module "SNS" {
 module "ParameterStore" {
   source = "../modules/ParameterStore"
   api_key= var.YoutupeApi
+  summ_api_key=var.SummrizationApiKey
   db_host=module.Mysql.mysql-database.address
   db_user=var.db_username
   db_pass=var.db_password

@@ -20,3 +20,10 @@ variable "ChannelIDs" {
 variable "email_address" {
   type = string
 }
+
+variable "SummrizationApiKey" {
+  type = string
+  sensitive = true
+}
+
+

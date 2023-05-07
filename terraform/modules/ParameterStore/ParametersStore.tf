@@ -1,10 +1,19 @@
 resource "aws_ssm_parameter" "api_key" {
   name        = "YoutupeApiKey"
-  description = "my youtupe api key"
+  description = "youtupe api key"
   type        = "SecureString"
   value       = var.api_key
 
 } 
+
+resource "aws_ssm_parameter" "summ_api_key" {
+  name        = "SummrizationApiKey"
+  description = "AI Summerization api key "
+  type        = "SecureString"
+  value       = var.api_key
+
+}
+
 resource "aws_ssm_parameter" "db_host" {
   name        = "mysql_endpoint"
   description = "mysql endpoint"
