@@ -10,7 +10,7 @@ resource "aws_ssm_parameter" "summ_api_key" {
   name        = "SummrizationApiKey"
   description = "AI Summerization api key "
   type        = "SecureString"
-  value       = var.api_key
+  value       = var.SummrizationApiKey
 
 }
 
