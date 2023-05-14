@@ -37,22 +37,21 @@ module "SNS" {
 module "ParameterStore" {
   source = "../modules/ParameterStore"
   api_key= var.YoutupeApi
-  summ_api_key=var.SummrizationApiKey
+  SummrizationApiKey=var.SummrizationApiKey
   db_host=module.Mysql.mysql-database.address
   db_user=var.db_username
   db_pass=var.db_password
+  BUCKET_NAME=var.BUCKET_NAME
   depends_on = [
     module.Mysql
   ]
 }
 
-#module "s3" {
-#  source = "../modules/S3bucket"
-#  buckbucketname =  "youtube-wtach-bucket"
-#  acl = "private"  
- # src =  "ChannelsID.json" 
- # dest =  "ChannelsID.json"
-#}
+module "s3" {
+  source = "../modules/S3bucket"
+  bucketname =  var.BUCKET_NAME
+
+}
 
 
 
@@ -67,4 +66,8 @@ module "cloudwatch" {
 
 module "lambda" {
   source = "../modules/Lambda"
+  BUCKET_NAME=var.BUCKET_NAME
+  depends_on = [
+    module.Mysql
+  ]
 }

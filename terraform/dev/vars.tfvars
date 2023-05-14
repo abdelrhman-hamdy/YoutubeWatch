@@ -1,6 +1,7 @@
-YoutupeApi   = "Your-Youtupe-Api-KEY"
-db_username  = "MySQL-UserName"
-db_password  = "MySQL-password"
-email_address= "YOUR-EMAIL-ADDRESS"
-ChannelIDs   = ["ChannelID1","ChannelID2","ChannelID3"]
-SummrizationApiKey = "Your-Summrization-Api-Key"
+YoutupeApi   = "Youtupe-Api-Key"
+db_username  = "Database-Name"
+db_password  = "Database-password"
+email_address= "Your-email"
+ChannelIDs   = [channelID1,channelID2,channelID3]
+SummrizationApiKey = "Summrization-Api-Key"
+BUCKET_NAME="S3-bucket-name"

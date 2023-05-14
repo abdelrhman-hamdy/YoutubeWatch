@@ -1,30 +1,10 @@
 data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
-resource "aws_iam_policy" "lambda_acess_appconfig_policy" {
-  name        = "lambda_acess_ssm_policy"
-  policy = jsonencode( 
-    {
-  "Version": "2012-10-17",
-  "Statement" : [
-    {
-      "Effect" : "Allow",
-      "Action" : [
-        "appconfig:StartConfigurationSession",
-        "appconfig:GetLatestConfiguration"
-      ],
-      "Resource" : [
-        "arn:aws:appconfig:${data.aws_region.current.name}:${data.aws_caller_identity.current.id}:*"
-      ]
-    }
-  ]
-}
 
-   )
-  }
 
-resource "aws_iam_policy" "lambda_acess_publish_sns_topic" {
-  name        = "lambda_acess_publish_sns_topic"
+resource "aws_iam_policy" "lambda_polices" {
+  name        = "lambda_polices"
   policy = jsonencode(   
 {
   "Version": "2012-10-17",
@@ -33,7 +13,39 @@ resource "aws_iam_policy" "lambda_acess_publish_sns_topic" {
     "Effect":"Allow",
     "Action":["sns:Publish","sns:CreateTopic"],
     "Resource":"arn:aws:sns:${data.aws_region.current.name}:${data.aws_caller_identity.current.id}:*"
-  }]
+  },
+  {
+      "Effect" : "Allow",
+      "Action" : [
+        "appconfig:StartConfigurationSession",
+        "appconfig:GetLatestConfiguration"
+      ],
+      "Resource" : [
+        "arn:aws:appconfig:${data.aws_region.current.name}:${data.aws_caller_identity.current.id}:*"
+      ]
+    },
+
+    {
+        "Effect": "Allow",
+        "Action": [
+            "s3:*"
+        ],
+        "Resource": "arn:aws:s3:::*"
+    },
+
+     {
+            "Sid": "AllowStartListGetTranscribe",
+            "Effect": "Allow",
+            "Action": [
+                "transcribe:GetTranscriptionJob",
+                "transcribe:StartTranscriptionJob",
+                "transcribe:ListTranscriptionJobs",
+                "transcribe:ListTagsForResource"
+            ],
+            "Resource": "*"
+        }
+
+  ]
 }
 
    )
@@ -68,15 +80,9 @@ resource "aws_iam_role_policy_attachment" "lambda_acess_ssm_policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"
 }
 
-resource "aws_iam_role_policy_attachment" "lambda_acess_appconfig_policy" {
+resource "aws_iam_role_policy_attachment" "lambda_polices_attachment" {
   role       = aws_iam_role.lambda_exec.name
-  policy_arn = aws_iam_policy.lambda_acess_appconfig_policy.arn
-}
-
-
-resource "aws_iam_role_policy_attachment" "lambda_acess_publish_sns_topic" {
-  role       = aws_iam_role.lambda_exec.name
-  policy_arn = aws_iam_policy.lambda_acess_publish_sns_topic.arn
+  policy_arn = aws_iam_policy.lambda_polices.arn
 }
 
 

@@ -42,15 +42,10 @@ def get_last_uploaded_vedios(youtube,playlist_ids):
             channelId=response['items'][0]['snippet']['channelId']
             channelTitle=response['items'][0]['snippet']['channelTitle']
             dur=isodate.parse_duration(str(response['items'][0]['contentDetails']['duration']))
-            if int(dur.total_seconds()) > 100 :
+            if int(dur.total_seconds()) > 61:
                 link= f'https://www.youtube.com/watch?v={vedioId}'
                 lists_of_latest_vedios.append({"channelTitle":channelTitle,"channelId":channelId, "vedioTitle":vedioTitle,"vedioId":vedioId,"link":link})
                 break
-
-            
-
-
-
 
     return lists_of_latest_vedios
 

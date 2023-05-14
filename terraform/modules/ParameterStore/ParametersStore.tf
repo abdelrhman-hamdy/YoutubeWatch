@@ -14,6 +14,15 @@ resource "aws_ssm_parameter" "summ_api_key" {
 
 }
 
+
+resource "aws_ssm_parameter" "BUCKET_NAME" {
+  name        = "BUCKET_NAME"
+  description = "AI Summerization api key "
+  type        = "SecureString"
+  value       = var.BUCKET_NAME
+
+}
+
 resource "aws_ssm_parameter" "db_host" {
   name        = "mysql_endpoint"
   description = "mysql endpoint"

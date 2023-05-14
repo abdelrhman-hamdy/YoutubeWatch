@@ -7,6 +7,10 @@ variable "SummrizationApiKey" {
   type = string
   sensitive = true
 }
+variable "BUCKET_NAME" {
+  type = string
+}
+
 
 
 variable "db_host" {

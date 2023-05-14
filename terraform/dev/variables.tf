@@ -7,6 +7,10 @@ variable "db_password" {
   sensitive = true
 }
 
+variable "BUCKET_NAME" {
+  type = string
+}
+
 variable "YoutupeApi" {
   type = string
   sensitive = true
