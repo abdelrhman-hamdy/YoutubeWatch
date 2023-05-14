@@ -37,12 +37,15 @@ def push_msg_to_topic(topic_name,subject,msg_body ):
     return MessageId
 
 def transcribe_audio(bucket_name,video_id): 
-    response = transcribe.start_transcription_job(
-    TranscriptionJobName=video_id,
-    Media={'MediaFileUri':f's3://{bucket_name}/{video_id}.mp4' },
-    MediaFormat='mp4',
-     IdentifyLanguage=True
-    )
+    try :
+        response = transcribe.start_transcription_job(
+        TranscriptionJobName=video_id,
+        Media={'MediaFileUri':f's3://{bucket_name}/{video_id}.mp4' },
+        MediaFormat='mp4',
+        IdentifyLanguage=True
+        )
+    except:
+        print(f'There is a Transcription Job with this name {video_id}')
 
     while True : 
         response =transcribe.list_transcription_jobs(JobNameContains=video_id)
