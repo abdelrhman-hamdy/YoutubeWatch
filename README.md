@@ -11,8 +11,9 @@
 ## Introduction 
 YoutubeWatch is a serverless application created on AWS that periodically checks a list of favorite YouTube channels for new video uploads. If a new video is detected, it publishes a message to an SNS topic, which in turn sends emails to subscribers notifying them of the new video. Because it is a serverless application, it does not require the provisioning or management of servers, and instead leverages AWS services to handle the necessary infrastructure and scaling.
 <p align="center">
-<img  src="https://github.com/abdelrhman-hamdy/YoutubeWatch/assets/69608603/b9b9a67b-a66b-4463-9e6f-821e0b53a18b" alt="centered image" height="400">
+<img  src="https://github.com/abdelrhman-hamdy/YoutubeWatch/assets/69608603/f12bcfe9-7e97-45b4-9912-24ed2f99996a" alt="centered image" height="400">
 </p>
+
 
 
 ## Tools 
