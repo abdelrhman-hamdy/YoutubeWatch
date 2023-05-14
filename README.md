@@ -22,7 +22,9 @@ YoutubeWatch is a serverless application created on AWS that periodically checks
 - Python
 
 ## Diagram
- ![YoutupeWatch](https://user-images.githubusercontent.com/69608603/224564562-e6b72d23-3208-4127-a832-7adda9f1b238.png)
+<p align="center">
+<img  src="https://github.com/abdelrhman-hamdy/YoutubeWatch/assets/69608603/10bb162c-8bba-4b02-af54-7b631aa51241" alt="centered image" height="400">
+</p>
 
 ## Prerequisites 
 You will need to have the following to run the project successfully : 
@@ -33,6 +35,7 @@ You will need to have the following to run the project successfully :
 # Run The Application
  you will need to provide some values when applying the terraform :
  - Youtupe API key, to get one, check this [link](https://www.youtube.com/watch?v=D56_Cx36oGY&t=76s) from 1:16 to 4:45 
+ - Summerizer API key, create an acount on https://www.edenai.co/ , they provide a 10$ credit to use
  - A username and password of your choice for the created database.
  - Email address to receive notifications. DON'T forget to confirm the subscription that will be sent from SNS
  - List of your favourite youtube channel ids, to know how to get a channel id, check this [link](https://www.youtube.com/watch?v=0oDy2sWPF38)
