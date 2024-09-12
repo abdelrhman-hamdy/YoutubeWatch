@@ -18,12 +18,16 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+
 - task: SonarQubePrepare@6
   inputs:
     SonarQube: 'SonarQubePP'
-    scannerMode: 'MSBuild'
-    projectKey: 'test-ao-ado'
-    projectName: 'test-ao-ado'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'test-ao-ado'
+    cliProjectName: 'test-ao-ado'
+    cliSources: '.'
+
 - task: SonarQubeAnalyze@6
   inputs:
     jdkversion: 'JAVA_HOME_17_X64'
