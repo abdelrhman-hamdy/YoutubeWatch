@@ -23,7 +23,6 @@ steps:
   inputs:
     SonarQube: 'SonarQubePP'
     scannerMode: 'CLI'
-    configMode: 'manual'
     cliProjectKey: 'test-ao-ado'
     cliProjectName: 'test-ao-ado'
     cliSources: '.'
