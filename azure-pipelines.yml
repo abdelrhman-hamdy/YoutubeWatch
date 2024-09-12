@@ -17,3 +17,17 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- task: SonarQubePrepare@6
+  inputs:
+    SonarQube: 'SonarQubePP'
+    scannerMode: 'MSBuild'
+    projectKey: 'test-ao-ado'
+    projectName: 'test-ao-ado'
+- task: SonarQubeAnalyze@6
+  inputs:
+    jdkversion: 'JAVA_HOME_17_X64'
+
+- task: SonarQubePublish@6
+  inputs:
+    pollingTimeoutSec: '300'
