@@ -25,6 +25,9 @@ steps:
     scannerMode: 'CLI'
     cliProjectKey: 'test-ao-ado'
     cliProjectName: 'test-ao-ado'
+    extraProperties: |
+      sonar.projectKey=test-ao-ado
+      sonar.projectName=test-ao-ado
     
 
 - task: SonarQubeAnalyze@6
